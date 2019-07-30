@@ -16,6 +16,11 @@ mongoose.connect(mongoDB, { useNewUrlParser: true }, err => {
 app.use(express.json());
 app.use(cors());
 
+app.use('/', (req, res, next) => {
+  // For cherry pick from other remote
+  next();
+})
+
 app.use('/user', require('./routes/userRoutes'));
 
 app.listen(port, () =>
